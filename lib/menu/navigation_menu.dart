@@ -42,7 +42,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     final sp = await SharedPreferences.getInstance();
     setState(() {
       _fullname = sp.getString("USER_FULLNAME") ?? "Guest";
-      _email = sp.getString("USER_EMAIL");
+      _email = sp.getString("USER_EMAIL") ?? "Guest";
       _image =
           sp.getString("USER_IMAGE") ?? 'assets/images/default_profile.jpg';
     });

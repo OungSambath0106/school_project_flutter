@@ -41,8 +41,8 @@ class _LoginUserState extends State<LoginUser> {
     });
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      if(data['success'] == 1) {
-        // save user login info 
+      if (data['success'] == 1) {
+        // save user login info
         // you can user SharedPreferences
         final sp = await SharedPreferences.getInstance();
         sp.setInt("USER_ID", int.parse("${data['userId']}"));
@@ -56,27 +56,26 @@ class _LoginUserState extends State<LoginUser> {
         sp.setBool("isLoggedIn", true);
 
         EasyLoading.instance
-        ..backgroundColor = Colors.green
-        ..textColor = Colors.white;
+          ..backgroundColor = Colors.green
+          ..textColor = Colors.white;
         EasyLoading.showSuccess("${data['msg_success']}");
-        
-        if(!mounted) return;
+
+        if (!mounted) return;
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => const HomeScreen(),
-            ),
-            (route) => false,
+          ),
+          (route) => false,
         );
-      }else {
+      } else {
         EasyLoading.showError("${data['msg_error']}");
       }
-    }else {
+    } else {
       EasyLoading.instance
         ..backgroundColor = Colors.red
         ..textColor = Colors.white;
       EasyLoading.showError("Failed to send data to server");
-
     }
   }
 
@@ -167,7 +166,8 @@ class _LoginUserState extends State<LoginUser> {
                   ),
                   onPressed: () {
                     if (_keyForm.currentState!.validate()) {
-                      String strName = controllerUsername.text.toString().trim();
+                      String strName =
+                          controllerUsername.text.toString().trim();
                       String strPwd = controllerPassword.text.toString().trim();
                       loginUser(strName, strPwd);
                     }

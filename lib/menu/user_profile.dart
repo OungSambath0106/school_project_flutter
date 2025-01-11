@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_appd106d1/screens/edit_profile_screen.dart';
 import 'package:flutter_appd106d1/app_colors.dart';
 import 'package:flutter_appd106d1/app_url.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -113,11 +114,20 @@ class _UserProfileState extends State<UserProfile> {
                               color: AppColors.black,
                             ),
                           ),
-                          Text(
-                            'EDIT',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.blue,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfilePage()),
+                              );
+                            },
+                            child: Text(
+                              'EDIT',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.blue,
+                              ),
                             ),
                           ),
                         ],
